@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.AseetsMapper">
+  <resultMap id="AseetsLogResultMap" type="com.louis.kitty.admin.model.AseetsInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="num" jdbcType="VARCHAR" property="num" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="measureTime" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="attribute" jdbcType="INTEGER" property="attribute" />
+    <result column="holder" jdbcType="VARCHAR" property="holder" />
+    <result column="storageTime" jdbcType="TIMESTAMP" property="storageTime" />
+  </resultMap>
+  <sql id="Base_Column_List1">
+    id, name, num, status, type, measureTime, attribute, holder, storageTime
+  </sql>
+  <insert id="AseetsLogResultMap" parameterType="com.louis.kitty.admin.model.AseetsInfo">
+    insert into assets_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+       <if test="measureTime != null">
+        measureTime,
+      </if>
+      <if test="attribute != null">
+        attribute,
+      </if>
+      <if test="holder != null">
+        holder,
+      </if>
+       <if test="storageTime != null">
+        storageTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="measureTime != null">
+        #{measureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attribute != null">
+        #{attribute,jdbcType=INTEGER},
+      </if>
+      <if test="holder != null">
+        #{holder,jdbcType=VARCHAR},
+      </if>
+      <if test="storageTime != null">
+        #{storageTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
