@@ -1,5 +1,7 @@
 package com.louis.kitty.admin.sevice;
 
+import java.util.List;
+
 import com.louis.kitty.admin.model.AseetsReqInfo;
 
 /**
@@ -12,5 +14,11 @@ import com.louis.kitty.admin.model.AseetsReqInfo;
 public interface AseetsReqService {
 
 	int save(AseetsReqInfo record);
+
+	List<AseetsReqInfo> findByAseetID(int aseetID);
+
+	List<AseetsReqInfo> findMyReq(int applicantID);
+
+	List<AseetsReqInfo> findMyRes(int holderID);
 
 }

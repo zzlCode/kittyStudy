@@ -15,7 +15,7 @@
   <sql id="Base_Column_List">
     id, name, num, status, type, measureTime, attribute, holderID, storageTime
   </sql>
-    <select id="findAllAseets"  resultMap="BaseResultMap">
+  <select id="findAllAseets"  resultMap="BaseResultMap">
     select  a.* , (select u.name from sys_user u where u.id = a.holderID) holder from assets_info a
   </select>
   <select id="findByAseetType" parameterType="java.lang.Integer" resultMap="BaseResultMap">

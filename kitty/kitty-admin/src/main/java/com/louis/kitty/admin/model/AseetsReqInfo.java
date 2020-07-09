@@ -12,6 +12,8 @@ public class AseetsReqInfo {
 
 	private int aseetsID;
 
+	private String aseetName;
+
 	private long applicantID;
 
 	private String applicant;
@@ -106,6 +108,14 @@ public class AseetsReqInfo {
 
 	public void setHolder(String holder) {
 		this.holder = holder;
+	}
+
+	public String getAseetName() {
+		return aseetName;
+	}
+
+	public void setAseetName(String aseetName) {
+		this.aseetName = aseetName;
 	}
 
 }
