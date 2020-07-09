@@ -22,12 +22,12 @@
   <select id="findMyReq" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
        select  a.* , (select ai.name from assets_info ai where ai.id = a.aseetsID) aseetName, 
         (select u.name from sys_user u where u.id = a.holderID) holder from aseets_req a  
-        where a.applicantID = #{applicantID,jdbcType=INTEGER} order by aseetName
+        where a.applicantID = #{applicantID,jdbcType=INTEGER} order by status, aseetName
   </select>
   <select id="findMyRes" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
        select  a.* ,  (select ai.name from assets_info ai where ai.id = a.aseetsID) aseetName, 
         (select u.name from sys_user u where u.id = a.applicantID) applicant from aseets_req a 
-          where a.holderID = #{holderID,jdbcType=INTEGER} order by aseetName
+          where a.holderID = #{holderID,jdbcType=INTEGER} order by status, aseetName
   </select>
   <insert id="insertAseetsReqInfo" parameterType="com.louis.kitty.admin.model.AseetsReqInfo">
     insert into aseets_req
