@@ -1,10 +1,13 @@
 package com.louis.kitty.admin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,13 +55,35 @@ public class AseetsReqController {
 	}
 
 	/**
-	 * 查看我的请求
+	 * 查看待我处理
 	 * 
 	 * @return
 	 */
 	@GetMapping(value = "/aseets/user/aseetRes")
 	public HttpResult getMyRes(@RequestParam int holderID) {
 		return HttpResult.ok(aseetsReqService.findMyRes(holderID));
+	}
+
+	/**
+	 * 处理请求
+	 * 
+	 * @return
+	 */
+	@PutMapping(value = "/aseets/handle/aseetReq")
+	public HttpResult handleReq(@RequestBody List<AseetsReqInfo> listReq) {
+
+		return HttpResult.ok(aseetsReqService.updateReqStatus(listReq));
+	}
+
+	/**
+	 * 资产变更日志
+	 * 
+	 * @return
+	 */
+	@GetMapping(value = "/aseets/log")
+	public HttpResult getAseetLog(@RequestParam int aseetID) {
+
+		return HttpResult.ok(aseetsReqService.findAseetReqLog(aseetID));
 	}
 
 }

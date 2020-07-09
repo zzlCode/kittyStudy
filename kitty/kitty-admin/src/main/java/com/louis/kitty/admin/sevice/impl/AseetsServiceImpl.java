@@ -45,4 +45,10 @@ public class AseetsServiceImpl implements AseetsService {
 		return 1;
 	}
 
+	@Override
+	public List<AseetsInfo> findByAseetNum(String num) {
+		List<AseetsInfo> aseetsList = aseetsMapper.findByAseetNum(num);
+		return aseetsList;
+	}
+
 }

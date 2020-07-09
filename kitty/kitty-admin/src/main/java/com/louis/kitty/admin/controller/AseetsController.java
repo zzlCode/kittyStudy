@@ -1,8 +1,11 @@
 package com.louis.kitty.admin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -29,7 +32,20 @@ public class AseetsController {
 //	@PreAuthorize("hasAuthority('sys:dict:add') AND hasAuthority('sys:dict:edit')")
 	@PostMapping(value = "/aseets/save")
 	public HttpResult save(@RequestBody AseetsInfo aseetsInfo, HttpServletRequest request) {
+		List<AseetsInfo> listAseets = aseetsService.findByAseetNum(aseetsInfo.getNum());
+		if (listAseets != null) {
+			return HttpResult.error("资产已经存在!");
+		}
 		return HttpResult.ok(aseetsService.save(aseetsInfo));
+	}
+
+	@PostMapping(value = "/aseets/test")
+	@Transactional
+	public HttpResult test(@RequestBody AseetsInfo aseetsInfo, HttpServletRequest request) {
+		aseetsService.save(aseetsInfo);
+		aseetsInfo.setName("testTTTTTT");
+		aseetsService.update(aseetsInfo);
+		return HttpResult.ok();
 	}
 
 	/**

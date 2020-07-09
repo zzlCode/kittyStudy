@@ -16,6 +16,10 @@ public interface AseetsReqMapper {
 
 	List<AseetsReqInfo> findMyRes(@Param(value = "holderID") int holderID);
 
+	int updateReqStatus(AseetsReqInfo aseetReq);
+
+	List<AseetsReqInfo> findAseetLog(@Param(value = "aseetsID") int aseetsID);
+
 //	int updateByAseetID(AseetsReqInfo aseetReq);
 //
 ////	int updateAseets(AseetsInfo aseetsInfo);

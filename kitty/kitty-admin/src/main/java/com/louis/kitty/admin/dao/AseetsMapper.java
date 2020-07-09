@@ -20,4 +20,6 @@ public interface AseetsMapper {
 
 	List<AseetsInfo> findByAseetHolder(@Param(value = "holderID") long holderID);
 
+	List<AseetsInfo> findByAseetNum(@Param(value = "num") String num);
+
 }

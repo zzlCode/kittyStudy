@@ -30,4 +30,6 @@ public interface AseetsService {
 
 	List<AseetsInfo> findByAseetHolder(long holderID);
 
+	List<AseetsInfo> findByAseetNum(String num);
+
 }

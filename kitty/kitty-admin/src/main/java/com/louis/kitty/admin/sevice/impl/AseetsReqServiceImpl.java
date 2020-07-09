@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.louis.kitty.admin.dao.AseetsReqMapper;
 import com.louis.kitty.admin.model.AseetsReqInfo;
@@ -36,6 +37,24 @@ public class AseetsReqServiceImpl implements AseetsReqService {
 	@Override
 	public List<AseetsReqInfo> findMyRes(int holderID) {
 		List<AseetsReqInfo> aseetsReqList = aseetsReqMapper.findMyRes(holderID);
+		return aseetsReqList;
+	}
+
+	@Transactional
+	@Override
+	public int updateReqStatus(List<AseetsReqInfo> records) {
+		if (records == null || records.isEmpty()) {
+			return 1;
+		}
+		for (AseetsReqInfo record : records) {
+			aseetsReqMapper.updateReqStatus(record);
+		}
+		return 1;
+	}
+
+	@Override
+	public List<AseetsReqInfo> findAseetReqLog(int aseetsID) {
+		List<AseetsReqInfo> aseetsReqList = aseetsReqMapper.findAseetLog(aseetsID);
 		return aseetsReqList;
 	}
 

@@ -21,4 +21,8 @@ public interface AseetsReqService {
 
 	List<AseetsReqInfo> findMyRes(int holderID);
 
+	int updateReqStatus(List<AseetsReqInfo> records);
+
+	List<AseetsReqInfo> findAseetReqLog(int aseetsID);
+
 }

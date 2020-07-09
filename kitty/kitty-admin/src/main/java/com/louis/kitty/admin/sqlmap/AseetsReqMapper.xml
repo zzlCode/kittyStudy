@@ -24,11 +24,25 @@
         (select u.name from sys_user u where u.id = a.holderID) holder from aseets_req a  
         where a.applicantID = #{applicantID,jdbcType=INTEGER} order by status, aseetName
   </select>
+  <select id="findAseetLog" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+       select  a.* , (select u.name from sys_user u where u.id = a.holderID) holder, 
+        (select u.name from sys_user u where u.id = a.applicantID) applicant  from aseets_req a  
+        where a.aseetsID = #{aseetsID,jdbcType=INTEGER} and a.status =1 order by a.startTime
+  </select>
   <select id="findMyRes" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
        select  a.* ,  (select ai.name from assets_info ai where ai.id = a.aseetsID) aseetName, 
         (select u.name from sys_user u where u.id = a.applicantID) applicant from aseets_req a 
           where a.holderID = #{holderID,jdbcType=INTEGER} order by status, aseetName
   </select>
+  <update id="updateReqStatus" parameterType="com.louis.kitty.admin.model.AseetsReqInfo">
+    update aseets_req
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
   <insert id="insertAseetsReqInfo" parameterType="com.louis.kitty.admin.model.AseetsReqInfo">
     insert into aseets_req
     <trim prefix="(" suffix=")" suffixOverrides=",">
